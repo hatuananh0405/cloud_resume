@@ -1,0 +1,71 @@
+name: Deploy Cloud Resume
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ap-southeast-1
+  S3_BUCKET: resume-cv-intern-tanh-2026
+  CLOUDFRONT_ID: E3H6TYS6H05U2N
+  ECR_REPOSITORY: resume-lambda-repo
+  LAMBDA_FUNCTION: resume-visitor-counter
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Lambda image
+        run: |
+          cd Main
+          docker build --platform linux/amd64 -t ${{ env.ECR_REPOSITORY }}:latest .
+          docker tag ${{ env.ECR_REPOSITORY }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+
+      - name: Update Lambda function
+        run: |
+          aws lambda update-function-code \
+            --function-name ${{ env.LAMBDA_FUNCTION }} \
+            --image-uri ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest \
+            --region ${{ env.AWS_REGION }}
+
+      - name: Upload frontend to S3
+        run: |
+          aws s3 sync Main/ s3://${{ env.S3_BUCKET }} \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.tf" \
+            --exclude "*.tfstate*" \
+            --exclude "*.backup" \
+            --exclude "modules/*" \
+            --exclude ".terraform/*" \
+            --exclude "Dockerfile" \
+            --exclude "requirements.txt" \
+            --exclude "lambda_function.py" \
+            --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_ID }} \
+            --paths "/*"
+
+      - name: Verify deployment
+        run: echo "✅ Deployment completed!"
