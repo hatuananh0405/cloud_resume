@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hà Tuấn Anh | Cloud Engineer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="cv-container">
+        <header id="about" class="main-header">
+            <div class="header-flex">
+                <div class="header-text">
+                    <p class="greeting">HELLO!</p>
+                    <h1>I'm <span>Hà Tuấn Anh</span></h1>
+                    <div class="summary-box">
+                        <p>Passionate Cloud Engineer dedicated to building scalable infrastructure on AWS. As a Cloud/DevOps Intern, I have had some hands-on experience in AWS serverless architectures and Infrastructure as Code (Terraform). I am familiar with automating CI/CD pipelines (Jenkins, GitHub Actions) and managing containerized environments (Docker, Kubernetes), with a consistent focus on security and cost optimization.</p>
+                    </div>
+                    <a href="CV_HaTuanAnh.pdf" class="btn-download" download>
+                        <i class="fas fa-download"></i> Download PDF CV
+                    </a>
+                </div>
+                <div class="profile-pic">
+                    <img src="profile.jpg" alt="Hà Tuấn Anh Profile">
+                </div>
+            </div>
+            <hr class="main-divider">
+        </header>
+
+        <section id="education" class="cv-section">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="content-item">
+                <h3>University of Engineering and Technology</h3>
+                <p>Major in Mechatronic Engineering | Hanoi, Vietnam</p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2 class="section-title">CERTIFICATES</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-image">
+                        <img src="clf.jpg" alt="AWS Certified Cloud Practitioner">
+                    </div>
+                    <div class="certificate-info">
+                        <h3>AWS Certified Cloud Practitioner</h3>
+                        <p class="cert-date">April 2025</p>
+                        <p class="validation-number">Validation: 00471a6db9be405cbd13e5f3a3c7d07c</p>
+                    </div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-image">
+                        <img src="dva.jpg" alt="AWS Certified Developer - Associate">
+                    </div>
+                    <div class="certificate-info">
+                        <h3>AWS Certified Developer - Associate</h3>
+                        <p class="cert-date">February 2026</p>
+                        <p class="validation-number">Validation: 115aec1c9a804e1193d026461eaf6557</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="cv-section">
+            <h2 class="section-title">SKILLS(Foudation Level)</h2>
+            <div class="skills-grid">
+                <div class="skill-item"><strong>Programming:</strong> Python, HTML/CSS, C++, C</div>
+                <div class="skill-item"><strong>IaC:</strong> Terraform, AWS SAM</div>
+                <div class="skill-item"><strong>CI/CD:</strong> Jenkins, GitHub Actions, AWS CodeSuite</div>
+                <div class="skill-item"><strong>Containers:</strong> Docker, Kubernetes (K8s), Amazon EKS</div>
+                <div class="skill-item"><strong>Cloud Platforms:</strong> AWS (Lambda, S3, DynamoDB, CloudFront, IAM, EC2, SNS, Route 53,...)</div>
+                <div class="skill-item"><strong>Monitoring & Security:</strong> CloudWatch, SNS, IAM Least Privilege</div>
+            </div>
+        </section>
+
+        <section id="experience" class="cv-section">
+            <h2 class="section-title">EXPERIENCE</h2>
+            <div class="content-item">
+                <div class="exp-header">
+                    <h3>AI Engineering Intern</h3>
+                    <span>Oct 2023 – Aug 2025</span>
+                </div>
+                <div class="exp-body">
+                    <p><strong>Computer Vision (OpenCV):</strong></p>
+                    <ul>
+                        <li>Developed and implemented image recognition algorithms.</li>
+                        <li>Processed and augmented large-scale datasets for model robustness.</li>
+                    </ul>
+                    <p><strong>LLM & LangChain:</strong></p>
+                    <ul>
+                        <li>Researched LLM architectures and integrated LangChain for RAG pipelines.</li>
+                        <li>Optimized prompt engineering and managed vector databases.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="cv-section">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="project-accordion">
+                <div class="accordion-header" onclick="toggleProject()">
+                    <span id="p-icon" class="plus-icon">+</span>
+                    <h3>Cloud Resume website</h3>
+                </div>
+                <div id="p-content" class="accordion-body">
+                    <div class="project-diagram">
+                        <h4><i class="fas fa-sitemap"></i> Diagram Structure</h4>
+                        <div class="img-box">
+                            <img src="cloud-resume-diagram.png" alt="Architecture Diagram">
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h4><i class="fas fa-info-circle"></i> Details</h4>
+                        <p class="tech-stack">Tech Stack: AWS, Terraform, Python, GitHub Actions.</p>
+                        <ul>
+                            <li><strong>Containerization:</strong> Packaged the Python backend using Docker and deployed as a Lambda Container Image via Amazon ECR, ensuring environment consistency and streamlining dependencies.</li>
+                            <li><strong>IaC:</strong> Provisioned modular multi-tier infrastructure using Terraform.</li>
+                            <li><strong>Hosting:</strong> Responsive portfolio on S3 with CloudFront and HTTPS security.</li>
+                            <li><strong>Backend:</strong> Visitor counter system using Python Lambda and DynamoDB.</li>
+                            <li><strong>Security:</strong> CloudFront OAC and IAM Principle of Least Privilege.</li>
+                            <li><strong>Automated:</strong> Integrated SNS for real-time notifications with Spam Filtering.</li>
+                            <li><strong>CI/CD:</strong> Fully automated deployment workflow via GitHub Actions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section contact-info-section">
+            <h2 class="section-title">CONNECT WITH ME</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>GitHub</h3>
+                        <p>View my code repositories</p>
+                        <a href="#" target="_blank">github.com/hatanuanh</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>hatuananh040504@gmail.com</p>
+                        <a href="mailto:hatuananh040504@gmail.com">Send a message</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me professionally</p>
+                        <a href="#" target="_blank">linkedin.com/in/hatanuanh</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Phone</h3>
+                        <p>+84 988803280</p>
+                        <a href="tel:+84988803280">Call me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cv-section contact-area">
+            <h2 class="section-title">LEAVE A COMMENT</h2>
+            <div class="feedback-layout">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your name">
+                    <textarea id="message" rows="4" placeholder="Write your feedback or message..."></textarea>
+                    <button onclick="sendComment()" class="btn-send"><i class="fas fa-paper-plane"></i> SEND FEEDBACK</button>
+                </div>
+                <div class="counter-box">
+                    <p><i class="fas fa-eye"></i> VISITORS</p>
+                    <span id="counter">0</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Hà Tuấn Anh. Hosted on AWS Infrastructure — Cloud Resume Project.</p>
+        </footer>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>

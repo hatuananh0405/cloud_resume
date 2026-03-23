@@ -1,0 +1,30 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.backup
+
+# Local
+Main/.terraform/
+Main/.terraform.lock.hcl
+Main/*.tfstate*
+Main/*.backup
+
+# Executables
+*.exe
+*.dll
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test-*.json
+*.txt
+modules.zip
