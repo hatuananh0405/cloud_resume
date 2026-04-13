@@ -78,3 +78,19 @@ function showToast(message, color = "#bc13fe") {
 document.addEventListener('DOMContentLoaded', function() {
     updateVisitorCount();
 });
+
+
+// Toggle cho project 3-tier
+function toggleProject2() {
+    const content = document.getElementById('p-content-2');
+    const icon = document.getElementById('p-icon-2');
+    
+    content.classList.toggle('active');
+    if (content.classList.contains('active')) {
+        icon.innerText = "−";
+        icon.style.transform = "rotate(0deg)";
+    } else {
+        icon.innerText = "+";
+        icon.style.transform = "rotate(0deg)";
+    }
+}

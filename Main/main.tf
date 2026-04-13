@@ -18,6 +18,7 @@ module "networking" {
   aws_region   = var.aws_region
   lambda_sg_id = module.security.lambda_sg_id  # Thêm dòng này
 }
+
 module "security" {
   source         = "../modules/security"
   vpc_id         = module.networking.vpc_id

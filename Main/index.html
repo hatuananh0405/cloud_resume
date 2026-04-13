@@ -136,6 +136,74 @@
                     </div>
                 </div>
             </div>
+
+
+                        <!-- Project 2: 3-Tier Web Architecture -->
+            <div class="project-accordion">
+                <div class="accordion-header" onclick="toggleProject2()">
+                    <span id="p-icon-2" class="plus-icon">+</span>
+                    <h3>AWS 3-Tier Web Architecture (High Availability)</h3>
+                </div>
+                <div id="p-content-2" class="accordion-body">
+                    <div class="project-diagram">
+                        <h4><i class="fas fa-sitemap"></i> Architecture Diagram</h4>
+                        <div class="img-box">
+                            <img src="3tier-architecture.png" alt="3-Tier Architecture Diagram" style="max-width: 100%; border-radius: 8px;">
+                            <p style="margin-top: 10px; font-size: 0.8rem; color: #a0a7b5;">
+                                Custom VPC with Public & Private Subnets across Multiple Availability Zones
+                            </p>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h4><i class="fas fa-info-circle"></i> Architecture Components</h4>
+                        <p class="tech-stack">Tech Stack: AWS VPC, EC2, RDS, ALB, ASG, S3, IAM, CloudWatch, CloudTrail, SNS, NAT Gateway</p>
+                        
+                        <h4><i class="fas fa-network-wired"></i> Networking Layer</h4>
+                        <ul>
+                            <li><strong>VPC:</strong> Custom VPC with CIDR block, Internet Gateway, NAT Gateway</li>
+                            <li><strong>Public Subnets (Web Tier):</strong> 2 subnets across AZ-1a, AZ-1b for high availability</li>
+                            <li><strong>Private Subnets (App Tier):</strong> 2 subnets across AZ-1a, AZ-1b for backend servers</li>
+                            <li><strong>Private Subnets (DB Tier):</strong> 2 subnets across AZ-1a, AZ-1b for database</li>
+                            <li><strong>Route Tables:</strong> Configured for public and private traffic routing</li>
+                            <li><strong>VPC Flow Logs:</strong> Stored in S3 bucket for network monitoring</li>
+                        </ul>
+
+                        <h4><i class="fas fa-server"></i> Compute Layer</h4>
+                        <ul>
+                            <li><strong>Web Tier (Public):</strong> EC2 instances with Nginx, serving React.js, behind External ALB with ASG</li>
+                            <li><strong>App Tier (Private):</strong> EC2 instances with Node.js, behind Internal ALB with ASG</li>
+                            <li><strong>Auto Scaling Groups:</strong> Configured for Web and App tiers with health checks</li>
+                            <li><strong>Load Balancers:</strong> External ALB (Internet-facing) and Internal ALB (Private)</li>
+                        </ul>
+
+                        <h4><i class="fas fa-database"></i> Database Layer</h4>
+                        <ul>
+                            <li><strong>Database Tier (Private):</strong> Amazon Aurora MySQL Multi-AZ deployment</li>
+                            <li><strong>Primary Database:</strong> Located in AZ-1a for read/write operations</li>
+                            <li><strong>Backup Replica:</strong> Located in AZ-1b for automatic failover</li>
+                            <li><strong>DB Subnet Group:</strong> Spans across multiple private subnets</li>
+                        </ul>
+
+                        <h4><i class="fas fa-shield-alt"></i> Security & Monitoring</h4>
+                        <ul>
+                            <li><strong>Layered Security Groups:</strong> Ext-LB → Web-Tier → Int-LB → App-Tier → DB-Tier</li>
+                            <li><strong>IAM Roles:</strong> EC2 roles with S3 read-only and SSM managed instance core</li>
+                            <li><strong>S3 Buckets:</strong> Code storage + VPC Flow Logs storage</li>
+                            <li><strong>CloudWatch Alarms:</strong> Monitoring metrics with SNS email notifications</li>
+                            <li><strong>CloudTrail:</strong> API activity logging for audit and compliance</li>
+                        </ul>
+
+                        <h4><i class="fas fa-chart-line"></i> Key Achievements</h4>
+                        <ul>
+                            <li>✅ Achieved 99.9% availability with Multi-AZ deployment across 3 Availability Zones</li>
+                            <li>✅ Implemented end-to-end security with 5-layer Security Groups</li>
+                            <li>✅ Reduced latency by placing app and database in same VPC</li>
+                            <li>✅ Automated monitoring and alerting with CloudWatch + SNS</li>
+                            <li>✅ Scalable architecture with Auto Scaling Groups at Web and App tiers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="cv-section contact-info-section">

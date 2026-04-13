@@ -1062,3 +1062,21 @@ footer {
         font-size: 2.6rem;
     }
 }
+
+
+/* 3-Tier Architecture Diagram */
+.img-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: #0a0c14;
+}
+
+.project-details h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.project-details h4:first-of-type {
+    margin-top: 0;
+}
